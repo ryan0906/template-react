@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 
 import configStore, { history } from '../store/config';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-// import { Router } from 'react-router-dom'; 
-import { ConnectedRouter } from 'connected-react-router';
+import { Router } from 'react-router-dom'; 
+// import { ConnectedRouter } from 'connected-react-router';
 import AppRoute from '../routing/AppRoute';
  
 import '../styles/index.css';
@@ -22,9 +22,9 @@ class App extends React.Component<AppProps, AppState> {
         return (
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <ConnectedRouter history={history}>
+                    <Router history={history}>
                         <AppRoute />
-                    </ConnectedRouter>
+                    </Router>
                 </PersistGate>
             </Provider>
         );

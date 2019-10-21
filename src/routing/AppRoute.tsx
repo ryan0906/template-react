@@ -25,7 +25,7 @@ const AppRoute = () => {
             <Route exact path="/counter" component={Counter} />
             <Route exact path="/info" component={InfoDivView} />
             <Route exact path="/target/:id" component={TargetIdView} />
-            {/* <Redirect path="*" to="/info" /> */}
+            {/* <Redirect exact path="/" to="/info" /> */}
             <Route component={NotFoundView} />
         </Switch>
     )

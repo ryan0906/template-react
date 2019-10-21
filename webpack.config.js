@@ -7,12 +7,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/'
+        // publicPath: '/'
     },
     devtool: 'inline-source-map',
     devServer: {
         historyApiFallback: true,
-        publicPath: '/',
+        // publicPath: '/',
         contentBase: path.join(__dirname, "dist"),
         port: 8080,
         proxy: {

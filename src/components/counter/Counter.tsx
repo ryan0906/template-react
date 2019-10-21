@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import { store } from '../../store/config';
+// import { push } from 'connected-react-router';
+// import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
  
 import { getInit, increase, decrease } from '../../reducers/Actions';
@@ -10,7 +13,8 @@ interface CounterProps {
     count: number;
     increase: any;
     decrease: any;
-    getInit: any
+    getInit: any;
+    history: any
 }
 interface CounterState {
     count: number;
@@ -27,6 +31,7 @@ const mapDispatchToProps = {
 };
  
 class Counter extends React.Component<CounterProps, CounterState> {
+    
     constructor(props: CounterProps) {
         super(props);
         console.log('props: ', props);
@@ -78,6 +83,13 @@ class Counter extends React.Component<CounterProps, CounterState> {
             })
         })
     }
+
+    navigate = () => {
+        this.props.history.push('/info');
+        // history.push('/info');
+        // store.dispatch(push('/info'));
+
+    }
  
     render() {
         return (
@@ -87,6 +99,7 @@ class Counter extends React.Component<CounterProps, CounterState> {
                 <span>State: {this.state.count}</span>
                 <button type='button' onClick={this.increaseOnClick}>+</button>
                 <button type='button' onClick={this.getCurr}>Current</button>
+                <button type='button' onClick={this.navigate}>Info</button>
             </div>
         )
     }
