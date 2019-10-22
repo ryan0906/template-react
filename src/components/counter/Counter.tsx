@@ -46,7 +46,6 @@ class CounterComp extends React.Component<CounterProps, CounterState> {
     
     constructor(props: CounterProps) {
         super(props);
-        console.log('props: ', props);
         this.state = {
             count: this.props.count
         }
@@ -57,21 +56,23 @@ class CounterComp extends React.Component<CounterProps, CounterState> {
         //     this.setState({ count: data.count });
         // });
     }
+
+    componentDidUpdate() {
+        console.log("in");
+        if (this.props.count != this.state.count) {
+            console.log(this.props.count, this.state.count);
+            this.setState({
+                count: this.props.count
+            });
+        }
+    }
  
     increaseOnClick = () => {
-        this.props.increase(this.props).then((data: Counter) => {
-            this.setState({
-                count: data.count
-            })
-        });
+        this.props.increase(this.state);
     }
  
     decreaseOnClick = () => {
-        this.props.decrease(this.state).then((data: Counter) => {
-            this.setState({
-                count: data.count
-            })
-        });
+        this.props.decrease(this.state);
     }
 
     getCurr = () => {
