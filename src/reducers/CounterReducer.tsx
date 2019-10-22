@@ -1,6 +1,5 @@
 import { createAction, ReducerBuilder } from 'redux-ts-simple';
-
-import CounterResources from '../resources/CounterResources';
+// import { createAction, handleActions } from 'redux-actions';
 
 const initState = {
     count: 0
@@ -12,6 +11,30 @@ export const CounterActions = {
     decrease: createAction<Counter>('DECREASE')
 }
 
+// const counterReducer = handleActions(
+//     {
+//         [CounterActions.getInit as any]: (state, action) => {
+//             return {
+//                 ...state,
+//                 count: action.payload.count
+//             }
+//         },
+//         [CounterActions.increase as any]: (state, action) => {
+//             return {
+//                 ...state,
+//                 count: action.payload.count
+//             }
+//         },
+//         [CounterActions.decrease as any]: (state, action) => {
+//             return {
+//                 ...state,
+//                 count: action.payload.count
+//             }
+//         }
+//     },
+//     initState
+// )
+
 const counterReducer = new ReducerBuilder(initState)
     .on(CounterActions.getInit, (state: any, action) => {
         console.log(state, action);
@@ -21,12 +44,6 @@ const counterReducer = new ReducerBuilder(initState)
         }
     })
     .on(CounterActions.increase, (state: any, action) => {
-        // const { counterList } = state;
-        // counterList.push(action.payload);
-        // return {
-        //     ...state,
-        //     counterList: counterList
-        // };
         return {
             ...state,
             count: action.payload.count

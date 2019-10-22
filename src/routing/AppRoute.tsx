@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Loadable from './Loadable';
 
-const Counter = Loadable(() =>
+const CounterComp = Loadable(() =>
     import(/* webpackChunkName: 'Counter' */ '../components/counter/Counter')
 );
 
@@ -22,7 +22,7 @@ const NotFoundView = Loadable(() =>
 const AppRoute = () => {
     return (
         <Switch>
-            <Route exact path="/counter" component={Counter} />
+            <Route exact path="/counter" component={CounterComp} />
             <Route exact path="/info" component={InfoDivView} />
             <Route exact path="/target/:id" component={TargetIdView} />
             {/* <Redirect exact path="/" to="/info" /> */}

@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
  
-import { getInit, increase, decrease } from '../../reducers/Actions';
+// import { getInit, increase, decrease } from '../../reducers/Actions';
 import CounterService from '../../services/CounterService';
-// import CounterResources from '../../resources/CounterResources';
  
 interface CounterProps {
     count: number;
@@ -24,13 +23,26 @@ const mapStateToProps = (state: any) => ({
     count: _.get(state, "counter.count", {})
 });
  
-const mapDispatchToProps = {
-    getInit,
-    increase,
-    decrease
-};
+// const mapDispatchToProps = {
+//     getInit,
+//     increase,
+//     decrease
+// };
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        getInit: () => {
+            dispatch(CounterService.getCounter());
+        },
+        increase: (count: Counter) => {
+            dispatch(CounterService.increaseCounter(count));
+        },
+        decrease: (count: Counter) => {
+            dispatch(CounterService.decreaseCounter(count));
+        }
+    }
+}
  
-class Counter extends React.Component<CounterProps, CounterState> {
+class CounterComp extends React.Component<CounterProps, CounterState> {
     
     constructor(props: CounterProps) {
         super(props);
@@ -41,47 +53,29 @@ class Counter extends React.Component<CounterProps, CounterState> {
     }
 
     componentDidMount() {
-        // debugger;
         // CounterService.getCounter().then(data => {
-        //     console.log("getInit:");
-        //     console.log(data);
         //     this.setState({ count: data.count });
         // });
-        // console.log("DidMount:");
-        // console.log(store.getState());
     }
  
     increaseOnClick = () => {
-        // this.props.inc(this.state);
-        CounterService.increaseCounter(this.state).then(data => {
+        this.props.increase(this.props).then((data: Counter) => {
             this.setState({
                 count: data.count
             })
         });
-        // this.props.increase();
-        // this.setState({
-        //     count: this.state.count + 1
-        // })
     }
  
     decreaseOnClick = () => {
-        CounterService.decreaseCounter(this.state).then(data => {
+        this.props.decrease(this.state).then((data: Counter) => {
             this.setState({
                 count: data.count
             })
         });
-        // this.props.decrease();
-        // this.setState({
-        //     count: this.state.count - 1
-        // })
     }
 
     getCurr = () => {
-        CounterService.getCounter().then(data => {
-            this.setState({
-                count: data.count
-            })
-        })
+        this.props.getInit();
     }
 
     navigate = () => {
@@ -105,4 +99,4 @@ class Counter extends React.Component<CounterProps, CounterState> {
     }
 }
  
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(CounterComp);
