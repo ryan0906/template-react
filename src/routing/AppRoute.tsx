@@ -15,8 +15,12 @@ const TargetIdView = Loadable(() =>
     import(/* webpackChunkName: 'TargetIdView' */ '../containers/TargetIdView')
 );
 
-const NotFoundView = Loadable(() =>
-    import(/* webpackChunkName: 'NotFoundView' */ '../containers/NotFoundView')
+const UserMain = Loadable(() =>
+    import(/* webpackChunkName: 'TargetIdView' */ '../containers/user/UserMain')
+);
+
+const NotFoundPage = Loadable(() =>
+    import(/* webpackChunkName: 'NotFoundPage' */ '../containers/NotFoundPage')
 );
 
 const AppRoute = () => {
@@ -25,8 +29,10 @@ const AppRoute = () => {
             <Route exact path="/counter" component={CounterComp} />
             <Route exact path="/info" component={InfoDivView} />
             <Route exact path="/target/:id" component={TargetIdView} />
-            {/* <Redirect exact path="/" to="/info" /> */}
-            <Route component={NotFoundView} />
+            
+            {/* TODO: auth route */}
+            <Route path="/app" component={UserMain} />
+            <Route component={NotFoundPage} />
         </Switch>
     )
 }

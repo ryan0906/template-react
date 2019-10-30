@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { store } from '../../store/config';
-// import { push } from 'connected-react-router';
-// import { useHistory } from 'react-router-dom';
 import { DatePicker, Button } from 'antd';
 import _ from 'lodash';
- 
+
+import NavigateService from '../../services/NavigateService';
 import CounterService from '../../services/CounterService';
  
 interface CounterProps {
@@ -13,7 +11,6 @@ interface CounterProps {
     increase: any;
     decrease: any;
     getInit: any;
-    history: any
 }
 interface CounterState {
     count: number;
@@ -75,10 +72,7 @@ class CounterComp extends React.Component<CounterProps, CounterState> {
     }
 
     navigate = () => {
-        this.props.history.push('/info');
-        // history.push('/info');
-        // store.dispatch(push('/info'));
-
+        NavigateService('/info');
     }
  
     render() {

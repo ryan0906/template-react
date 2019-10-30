@@ -15,6 +15,7 @@ const _window: any = window;
 const persistConfig = {
   key: 'persistStore',
   storage,
+  blacklist: ['router'],  //Prevent persisting router
 }
 
 const rootReducer = createRootReducer(history);

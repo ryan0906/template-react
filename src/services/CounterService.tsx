@@ -1,5 +1,4 @@
 import CounterResources from '../resources/CounterResources';
-// import { store } from "../store/config";
 import { CounterActions } from '../reducers/CounterReducer';
 
 function getCounter() {
