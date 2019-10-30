@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 // import { store } from '../../store/config';
 // import { push } from 'connected-react-router';
 // import { useHistory } from 'react-router-dom';
+import { DatePicker, Button } from 'antd';
 import _ from 'lodash';
  
-// import { getInit, increase, decrease } from '../../reducers/Actions';
 import CounterService from '../../services/CounterService';
  
 interface CounterProps {
@@ -22,12 +22,7 @@ interface CounterState {
 const mapStateToProps = (state: any) => ({
     count: _.get(state, "counter.count", {})
 });
- 
-// const mapDispatchToProps = {
-//     getInit,
-//     increase,
-//     decrease
-// };
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         getInit: () => {
@@ -89,6 +84,8 @@ class CounterComp extends React.Component<CounterProps, CounterState> {
     render() {
         return (
             <div>
+                <DatePicker></DatePicker>
+                <Button type='primary'>Primary</Button>
                 <button type='button' onClick={this.decreaseOnClick}>-</button>
                 <span>Props: {this.props.count}</span>
                 <span>State: {this.state.count}</span>

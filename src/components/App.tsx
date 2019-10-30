@@ -7,12 +7,9 @@ import { Router } from 'react-router-dom';
 // import { ConnectedRouter } from 'connected-react-router';
 import AppRoute from '../routing/AppRoute';
  
-import '../styles/index.css';
-// import { createStore } from 'redux';
-// import counterReducer from '../reducers/CounterReducer';
+import '../styles/index.less';
  
 const { store, persistor } = configStore();
-// const store = createStore(counterReducer);
  
 interface AppProps {}
 interface AppState {}
